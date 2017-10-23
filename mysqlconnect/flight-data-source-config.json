@@ -6,7 +6,8 @@
       "connection.url": "jdbc:mysql://mysql-db:3306/flights",
       "connection.user": "root",
       "connection.password": "confluent",
-      "table.whitelist": "airlines",
+      "table.whitelist": "airlines,flights,airports,routes,users,trips,planes,countries,facebook,locales",
+      "poll.interval.ms": 500,
       "mode": "timestamp",
       "timestamp.column.name": "modified",
       "topic.prefix": "mysql-"
