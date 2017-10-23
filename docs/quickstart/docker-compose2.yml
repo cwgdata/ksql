@@ -6,8 +6,7 @@ services:
     restart: always
     volumes:
       - ./create.sql:/docker-entrypoint-initdb.d/create.sql
-      - ./load_data.sql:/docker-entrypoint.initdb.d/load_data.sql
-      - ./data:/docker-entrypoint.initdb.d/data
+      - ./data:/data
     environment:
       MYSQL_ROOT_PASSWORD: confluent
       MYSQL_DATABASE: flights
