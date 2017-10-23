@@ -1,6 +1,22 @@
 ---
 version: '2'
 services:
+  mysql-db:
+    image: mysql
+    restart: always
+    volumes:
+      - ./create.sql:/docker-entrypoint-initdb.d/create.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: confluent
+      MYSQL_DATABASE: flights
+  mysql-admin:
+    image: adminer
+    depends_on:
+      - mysql-db
+    restart: always
+    ports:
+      - "8080:8080"
+
   zookeeper:
     image: "confluentinc/cp-zookeeper:latest"
     hostname: zookeeper
@@ -129,3 +145,41 @@ services:
       STREAMS_SCHEMA_REGISTRY_PORT: 8081
     extra_hosts:
       - "moby:127.0.0.1"
+   
+  connect:
+    image: confluentinc/cp-kafka-connect:3.3.0
+    restart: always
+    ports:
+      - "8083:8083"
+    depends_on:
+      - schema-registry
+      - zookeeper
+      - kafka
+      - mysql-db
+    volumes:
+      - $PWD/connect-plugins:/connect-plugins
+      - $PWD/connect-plugins/kafka-connect-transform-nullfilter/null-filter-4.0.0-SNAPSHOT.jar:/usr/share/java/kafka-connect-elasticsearch/null-filter-4.0.0-SNAPSHOT.jar
+      - $PWD/connect-plugins/mysql-connector-java-5.1.44-bin.jar:/usr/share/java/kafka-connect-jdbc/mysql-connector-java-5.1.44-bin.jar
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: kafka:29092
+      CONNECT_REST_PORT: 8083
+      CONNECT_GROUP_ID: "connect"
+      CONNECT_CONFIG_STORAGE_TOPIC: connect-config
+      CONNECT_OFFSET_STORAGE_TOPIC: connect-offsets
+      CONNECT_STATUS_STORAGE_TOPIC: connect-status
+      CONNECT_REPLICATION_FACTOR: 1
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.storage.StringConverter"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
+      CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
+      CONNECT_REST_ADVERTISED_HOST_NAME: "connect"
+      CONNECT_ZOOKEEPER_CONNECT: zookeeper:32181
+      CONNECT_PLUGIN_PATH: /connect-plugins
+      CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
+      CONNECT_LOG4J_LOGGERS: org.reflections=ERROR
+      CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-3.3.0.jar

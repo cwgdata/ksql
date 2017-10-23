@@ -1,0 +1,12 @@
+{
+  "name": "MySQL_Source",
+  "config":    {
+      "connector.class": "org.apache.kafka.connect.jdbc.JdbcSourceConnector",
+      "tasks.max": 1,
+      "connection.url": "jdbc:mysql://mysql-db:3306/flights?user=root&password=confluent",
+      "table.whitelist": "airlines",
+      "mode": "timestamp",
+      "timestamp.column.name": "modified",
+      "topic.prefix": "mysql-"
+    }
+}
