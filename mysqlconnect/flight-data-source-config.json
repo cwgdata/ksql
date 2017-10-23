@@ -9,7 +9,7 @@
       "table.whitelist": "airlines,flights,airports,routes,users,trips,planes,countries,facebook,locales",
       "poll.interval.ms": 500,
       "mode": "timestamp",
-      "timestamp.column.name": "modified",
+      "timestamp.column.name": "updated",
       "topic.prefix": "mysql-"
     }
 }
