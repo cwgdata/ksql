@@ -1,0 +1,28 @@
+{
+  "name": "vip-poor-ratings",
+  "config": {
+    "name": "vip-poor-ratings",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "topics": "VIP_POOR_RATINGS",
+    "tasks.max": "10",
+    "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
+    "insert.mode": "upsert",
+    "auto.create": true,
+    "auto.evolve": true,
+    "connection.url": "jdbc:postgresql://postgres:5432/",
+    "connection.user": "confluent",
+    "connection.password": "confluent",
+    "pk.mode": "kafka",
+    "transforms": "applySchema",
+    "transforms.applySchema.type": "io.confluent.examples.sling.json.connect.JsonSchemaTransformation$Value",
+    "transforms.applySchema.schema.name": "vip_poor_ratings",
+    "transforms.applySchema.schema.fields.RATING_TIME.type": "INT64",
+    "transforms.applySchema.schema.fields.RATING_TIME.name": "org.apache.kafka.connect.data.Timestamp",
+    "transforms.applySchema.schema.fields.UID.type": "INT64",
+    "transforms.applySchema.schema.fields.NAME.type": "STRING",
+    "transforms.applySchema.schema.fields.ELITE.type": "STRING",
+    "transforms.applySchema.schema.fields.STARS.type": "INT64",
+    "transforms.applySchema.schema.fields.ROUTE_ID.type": "INT64",
+    "transforms.applySchema.schema.fields.MESSAGE.type": "STRING"
+  }
+}

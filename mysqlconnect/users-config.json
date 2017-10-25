@@ -1,5 +1,5 @@
 {
-  "name": "MySQLSource",
+  "name": "UsersSource",
   "config":    {
       "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
       "tasks.max": 1,
@@ -8,16 +8,17 @@
       "connection.password": "confluent",
       "table.whitelist": "users",
       "poll.interval.ms": 500,
-      "mode": "bulk",
-      "schemas.enable": "false",
+      "mode": "timestamp",
       "key.converter": "org.apache.kafka.connect.json.JsonConverter",
       "value.converter": "org.apache.kafka.connect.json.JsonConverter",
       "value.converter.schemas.enable": "false",
       "key.converter.schemas.enable": "false", 
       "timestamp.column.name": "updated",
       "topic.prefix": "mysql-",
-      "transforms": "ValueToKey",
-      "transforms.ValueToKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
-      "transforms.ValueToKey.fields": "uid"
+      "transforms": "CreateKey,ExtractInt",
+      "transforms.CreateKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+      "transforms.CreateKey.fields": "uid",
+      "transforms.ExtractInt.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+      "transforms.ExtractInt.field": "uid"
     }
 }

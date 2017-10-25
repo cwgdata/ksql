@@ -1,14 +1,14 @@
 {
-  "name": "MySQLSource",
+  "name": "RoutesSource",
   "config":    {
       "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
       "tasks.max": 1,
       "connection.url": "jdbc:mysql://mysql-db:3306/flights",
       "connection.user": "root",
       "connection.password": "confluent",
-      "table.whitelist": "users",
+      "table.whitelist": "routes",
       "poll.interval.ms": 500,
-      "mode": "bulk",
+      "mode": "timestamp",
       "schemas.enable": "false",
       "key.converter": "org.apache.kafka.connect.json.JsonConverter",
       "value.converter": "org.apache.kafka.connect.json.JsonConverter",
@@ -16,8 +16,10 @@
       "key.converter.schemas.enable": "false", 
       "timestamp.column.name": "updated",
       "topic.prefix": "mysql-",
-      "transforms": "ValueToKey",
-      "transforms.ValueToKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
-      "transforms.ValueToKey.fields": "uid"
+      "transforms": "CreateKey,ExtractInt",
+      "transforms.CreateKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+      "transforms.CreateKey.fields": "rid",
+      "transforms.ExtractInt.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+      "transforms.ExtractInt.field": "rid"
     }
 }
