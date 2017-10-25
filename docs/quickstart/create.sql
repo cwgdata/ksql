@@ -274,15 +274,7 @@ OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 (name, code, oa_code, dst);
 
-\! echo Importing locales...
-
-LOAD DATA LOCAL INFILE 'locale/locales.dat'
-REPLACE INTO TABLE locales
-CHARACTER SET utf8
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
-LINES TERMINATED BY '\n'
-(locale, name);
+\! echo INSERTING USERS NOW
 
 INSERT INTO `users` (`name`, `password`, `uid`, `public`, `email`, `count`, `editor`, `elite`, `validity`, `guestpw`, `startpane`, `locale`, `units`, `updated`) VALUES
 ('Cliff',    NULL,    1,    NULL,    NULL,    0,    'B',    'P',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:33:02'),

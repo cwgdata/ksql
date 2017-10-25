@@ -8,7 +8,9 @@
       "connection.password": "confluent",
       "table.whitelist": "airlines,flights,airports,routes,users,trips,planes,countries,facebook,locales",
       "poll.interval.ms": 500,
-      "mode": "timestamp",
+      "mode": "bulk",
+      "value.converter.schemas.enable": "false",
+      "key.converter.schemas.enable": "false", 
       "timestamp.column.name": "updated",
       "topic.prefix": "mysql-"
     }
