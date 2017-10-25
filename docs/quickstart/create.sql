@@ -284,4 +284,26 @@ OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 (locale, name);
 
+INSERT INTO `users` (`name`, `password`, `uid`, `public`, `email`, `count`, `editor`, `elite`, `validity`, `guestpw`, `startpane`, `locale`, `units`, `updated`) VALUES
+('Cliff',    NULL,    1,    NULL,    NULL,    0,    'B',    'P',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:33:02'),
+('Jeremy',    NULL,    2,    NULL,    NULL,    0,    'B',    'G',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:33:35'),
+('Nick',    NULL,    3,    NULL,    NULL,    0,    'B',    'S',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:33:42'),
+('Chris',    NULL,    4,    NULL,    NULL,    0,    'B',    'P',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:33:50'),
+('Tim',    NULL,    5,    NULL,    NULL,    0,    'B',    'S',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:33:59'),
+('Jeff',    NULL,    6,    NULL,    NULL,    0,    'B',    'G',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:34:14'),
+('Paul',    NULL,    7,    NULL,    NULL,    0,    'B',    'S',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:34:21'),
+('Josh',    NULL,    8,    NULL,    NULL,    0,    'B',    'S',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:34:34'),
+('Mike',    NULL,    9,    NULL,    NULL,    0,    'B',    'S',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:34:41'),
+('Justin',    NULL,    10,    NULL,    NULL,    0,    'B',    'G',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:34:50'),
+('Gwen',    NULL,    11,    NULL,    NULL,    0,    'B',    'P',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:35:17'),
+('Jessica',    NULL,    12,    NULL,    NULL,    0,    'B',    'S',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:35:23'),
+('Debbie',    NULL,    13,    NULL,    NULL,    0,    'B',    'G',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:35:29'),
+('Maria',    NULL,    14,    NULL,    NULL,    0,    'B',    'S',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:35:57'),
+('Anita',    NULL,    15,    NULL,    NULL,    0,    'B',    'S',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:36:04'),
+('Mitch',    NULL,    16,    NULL,    NULL,    0,    'B',    'P',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:36:13'),
+('Shad',    NULL,    17,    NULL,    NULL,    0,    'B',    'G',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:36:21'),
+('Narendra',    NULL,    18,    NULL,    NULL,    0,    'B',    'P',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:36:52'),
+('Neha',    NULL,    19,    NULL,    NULL,    0,    'B',    'P',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:37:03'),
+('Jay',    NULL,    20,    NULL,    NULL,    0,    'B',    'S',    NULL,    NULL,    'H',    'en_US',    'M',    '2017-10-25 04:37:17');
+
 \! echo Done.

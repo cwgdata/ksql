@@ -1,0 +1,28 @@
+{
+  "name": "json-test",
+  "config": {
+    "name": "json-test",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "topics": "test-json",
+    "tasks.max": "10",
+    "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
+    "insert.mode": "upsert",
+    "auto.create": true,
+    "auto.evolve": true,
+    "connection.url": "jdbc:postgresql://postgres:5432/",
+    "connection.user": "confluent",
+    "connection.password": "confluent",
+    "pk.mode": "kafka",
+    "transforms": "applySchema",
+    "transforms.applySchema.type": "io.confluent.examples.sling.json.connect.JsonSchemaTransformation$Value",
+    "transforms.applySchema.schema.name": "pgtest",
+    "transforms.applySchema.schema.fields.REGISTERED_AT.type": "INT64",
+    "transforms.applySchema.schema.fields.REGISTERED_AT.name": "org.apache.kafka.connect.data.Timestamp",
+    "transforms.applySchema.schema.fields.city.type": "STRING",
+    "transforms.applySchema.schema.fields.user_id.type": "INT64",
+    "transforms.applySchema.schema.fields.username.type": "STRING",
+    "transforms.applySchema.schema.fields.level.type": "STRING",
+    "transforms.applySchema.schema.fields.last_name.type": "STRING",
+    "transforms.applySchema.schema.fields.first_name.type": "STRING"
+  }
+}

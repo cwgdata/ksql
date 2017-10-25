@@ -1,0 +1,20 @@
+{
+  "name": "json-test",
+  "config": {
+    "name": "json-test",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "topics": "test-json",
+    "tasks.max": "10",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "insert.mode": "upsert",
+    "auto.create": true,
+    "auto.evolve": true,
+    "connection.url": "jdbc:postgresql://postgres:5432/",
+    "connection.user": "confluent",
+    "connection.password": "confluent",
+    "pk.mode": "kafka",
+    "value.converter.schemas.enable": "false",
+    "key.converter.schemas.enable": "false"
+  }
+}
